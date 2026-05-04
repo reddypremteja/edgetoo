@@ -21,12 +21,16 @@
       rel="stylesheet"
     />
     <title>EdgeToo Solutions</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
 
     <!--
       IMPORTANT: This hidden form tells Netlify about our enquiry form at build time.
-      Do NOT remove it — without this, form submissions will not be captured.
+      It MUST be in <body> for Netlify to detect it. Do NOT remove it.
     -->
-    <form name="enquiry" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <form name="enquiry" netlify netlify-honeypot="bot-field" hidden>
       <input type="text" name="name" />
       <input type="email" name="email" />
       <input type="tel" name="phone" />
@@ -42,9 +46,5 @@
       <textarea name="message"></textarea>
       <input type="text" name="bot-field" />
     </form>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
   </body>
 </html>
