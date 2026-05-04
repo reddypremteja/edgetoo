@@ -466,29 +466,25 @@ const EnquiryForm = React.forwardRef(function EnquiryForm(_, ref) {
     e.preventDefault();
     setStatus('submitting');
 
-    // In local dev the Netlify form endpoint doesn't exist — simulate success
-    const isDev = process.env.NODE_ENV === 'development';
-    if (isDev) {
-      setTimeout(() => {
-        setStatus('success');
-        setFormData({ name: '', email: '', phone: '', product: '', message: '', 'bot-field': '' });
-      }, 800);
-      return;
-    }
-
     try {
-      const body = new URLSearchParams({
-        'form-name': 'enquiry',
-        ...formData,
-      }).toString();
-
-      const res = await fetch('/', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body,
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: '4260bb78-83ac-49be-8a21-ad560ef1a441', 
+          subject: `New Enquiry — ${formData.product || 'General'} | EdgeToo Solutions`,
+          from_name: 'EdgeToo Solutions Website',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          product: formData.product,
+          message: formData.message,
+          botcheck: formData['bot-field'],
+        }),
       });
 
-      if (res.ok) {
+      const data = await res.json();
+      if (data.success) {
         setStatus('success');
         setFormData({ name: '', email: '', phone: '', product: '', message: '', 'bot-field': '' });
       } else {
@@ -550,23 +546,12 @@ const EnquiryForm = React.forwardRef(function EnquiryForm(_, ref) {
               </div>
             ) : (
               <form
-                name="enquiry"
-                method="POST"
-                data-netlify="true"
-                netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
                 className="enquiry__form"
                 noValidate
               >
-                {/* Netlify hidden inputs */}
-                <input type="hidden" name="form-name" value="enquiry" />
-                {/* Honeypot (spam trap) — hidden from real users */}
-                <p style={{ display: 'none' }}>
-                  <label>
-                    Don't fill this out if you're human:
-                    <input name="bot-field" value={formData['bot-field']} onChange={handleChange} />
-                  </label>
-                </p>
+                {/* Web3Forms honeypot spam trap — hidden from real users */}
+                <input type="checkbox" name="botcheck" style={{ display: 'none' }} />
 
                 <div className="form__row form__row--two">
                   <div className="form__group">

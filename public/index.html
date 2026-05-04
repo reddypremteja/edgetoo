@@ -26,25 +26,5 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 
-    <!--
-      IMPORTANT: This hidden form tells Netlify about our enquiry form at build time.
-      It MUST be in <body> for Netlify to detect it. Do NOT remove it.
-    -->
-    <form name="enquiry" netlify netlify-honeypot="bot-field" hidden>
-      <input type="text" name="name" />
-      <input type="email" name="email" />
-      <input type="tel" name="phone" />
-      <select name="product">
-        <option value="Automation">Automation</option>
-        <option value="PLC">PLC</option>
-        <option value="HMI">HMI</option>
-        <option value="Vision">Vision</option>
-        <option value="Safety">Safety</option>
-        <option value="IT Services">IT Services</option>
-        <option value="General">General Enquiry</option>
-      </select>
-      <textarea name="message"></textarea>
-      <input type="text" name="bot-field" />
-    </form>
   </body>
 </html>
