@@ -746,16 +746,22 @@ input, select, textarea { font-family: var(--font); }
   gap: 2px;
 }
 .footer__logo-edge {
+  display: inline;
   font-size: 1.2rem;
   font-weight: 800;
   color: var(--white);
   letter-spacing: 0.02em;
 }
 .footer__logo-too {
+  display: inline; 
   font-size: 1.2rem;
   font-weight: 800;
   color: var(--teal);
   letter-spacing: 0.02em;
+}
+.footer__logo-name {
+  display: block;
+  white-space: nowrap;
 }
 .footer__logo-sub {
   font-size: 0.58rem;

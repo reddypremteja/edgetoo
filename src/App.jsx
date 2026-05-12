@@ -4,7 +4,7 @@ import './App.css';
 /* ─────────────────────────────────────────────
    CONSTANTS
 ───────────────────────────────────────────── */
-const WHATSAPP_NUMBER = '917019966984';
+const WHATSAPP_NUMBER = '919606471451';
 const WHATSAPP_MSG = encodeURIComponent(
   'Hello EdgeToo Solutions! I would like to enquire about your services.'
 );
@@ -471,7 +471,7 @@ const EnquiryForm = React.forwardRef(function EnquiryForm(_, ref) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          access_key: '4260bb78-83ac-49be-8a21-ad560ef1a441', 
+          access_key: '290fc48f-c213-4f74-966a-5b989ea0eb3b',
           subject: `New Enquiry — ${formData.product || 'General'} | EdgeToo Solutions`,
           from_name: 'EdgeToo Solutions Website',
           name: formData.name,
@@ -667,7 +667,10 @@ function Footer({ onContactClick }) {
             <div className="footer__logo-wrap">
               <img src="/logo-icon-dark.png" alt="EdgeToo Solutions icon" className="footer__logo-icon" />
               <span className="footer__logo-text">
-                <span className="footer__logo-edge">EDGE</span><span className="footer__logo-too">TOO</span>
+                <span className="footer__logo-name">
+                  <span className="footer__logo-edge">EDGE</span>
+                  <span className="footer__logo-too">TOO</span>
+                </span>
                 <span className="footer__logo-sub">SOLUTIONS</span>
               </span>
             </div>
