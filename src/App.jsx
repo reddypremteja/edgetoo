@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import ReactDOM from 'react-dom';
 import './App.css';
 
 /* ─────────────────────────────────────────────
@@ -208,6 +209,7 @@ function Navbar({ onContactClick }) {
   };
 
   return (
+    <>
     <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
       <div className="navbar__inner">
         {/* Logo */}
@@ -256,8 +258,12 @@ function Navbar({ onContactClick }) {
         </button>
       </div>
 
-      {/* Mobile drawer */}
-      <div className={`navbar__drawer${menuOpen ? ' navbar__drawer--open' : ''}`}>
+    </nav>
+
+    {/* Mobile drawer — rendered via portal directly in <body>
+        so it is NOT affected by the navbar's backdrop-filter stacking context */}
+    {ReactDOM.createPortal(
+      <div className={`mobile-drawer${menuOpen ? ' mobile-drawer--open' : ''}`}>
         <ul>
           {NAV_LINKS.map(({ label, href }) => (
             <li key={label}>
@@ -267,7 +273,7 @@ function Navbar({ onContactClick }) {
             </li>
           ))}
         </ul>
-        <div className="navbar__drawer-actions">
+        <div className="mobile-drawer__actions">
           <a
             href={WHATSAPP_URL}
             className="btn btn--whatsapp btn--full"
@@ -281,8 +287,10 @@ function Navbar({ onContactClick }) {
             Get a Quote
           </button>
         </div>
-      </div>
-    </nav>
+      </div>,
+      document.body
+    )}
+    </>
   );
 }
 
