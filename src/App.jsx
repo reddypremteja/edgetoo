@@ -522,7 +522,7 @@ const EnquiryForm = React.forwardRef(function EnquiryForm(_, ref) {
               </a>
               <a href={WHATSAPP_URL} className="enquiry__contact-item" target="_blank" rel="noopener noreferrer">
                 <span className="enquiry__contact-icon">📱</span>
-                <span>+91 70199 66984</span>
+                <span>+919606471451</span>
               </a>
             </div>
             <a
@@ -731,7 +731,7 @@ function Footer({ onContactClick }) {
               </li>
               <li>
                 <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                  📱 +91 70199 66984
+                  📱 +919606471451
                 </a>
               </li>
             </ul>
